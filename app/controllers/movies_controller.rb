@@ -21,6 +21,11 @@ class MoviesController < ApplicationController
       )
   end
 
+  def create
+    movie = MovieWrapper
+
+  end
+
   private
 
   def require_movie
