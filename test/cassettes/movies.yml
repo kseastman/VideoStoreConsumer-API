@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/search/movie?api_key=fa02d0bdf89ae75a3cfd634634208367&query=Princess%20Bride
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After
+      Cache-Control:
+      - public, max-age=21600
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 18 Jun 2018 21:18:47 GMT
+      Server:
+      - openresty
+      Vary:
+      - Accept-Encoding
+      X-Ratelimit-Limit:
+      - '40'
+      X-Ratelimit-Remaining:
+      - '39'
+      X-Ratelimit-Reset:
+      - '1529356736'
+      Content-Length:
+      - '724'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"page":1,"total_results":2,"total_pages":1,"results":[{"vote_count":1849,"id":2493,"video":false,"vote_average":7.7,"title":"The
+        Princess Bride","popularity":13.428466,"poster_path":"\/gpxjoE0yvRwIhFEJgNArtKtaN7S.jpg","original_language":"en","original_title":"The
+        Princess Bride","genre_ids":[12,10751,14,35,10749],"backdrop_path":"\/oaXyPP3HNW0gBl0ZGXLhJOdACeH.jpg","adult":false,"overview":"In
+        this enchantingly cracked fairy tale, the beautiful Princess Buttercup and
+        the dashing Westley must overcome staggering odds to find happiness amid six-fingered
+        swordsmen, murderous princes, Sicilians and rodents of unusual size. But even
+        death can''t stop these true lovebirds from triumphing.","release_date":"1987-09-18"},{"vote_count":2,"id":214652,"video":false,"vote_average":7,"title":"As
+        You Wish - The Story of ''The Princess Bride''","popularity":1.105412,"poster_path":"\/1wSZ6zRuIbVWuviMBdjyQIMwYIO.jpg","original_language":"en","original_title":"As
+        You Wish - The Story of ''The Princess Bride''","genre_ids":[],"backdrop_path":null,"adult":false,"overview":"An
+        excellent \"behinds the scenes\" documentary that was part of the DVD release
+        of \"The Princess Bride.\" Original archive footage &amp; new interviews with
+        cast members about making one of the greatest children''s movies of all time.","release_date":"2009-01-25"}]}'
+    http_version: 
+  recorded_at: Mon, 18 Jun 2018 21:18:47 GMT
+recorded_with: VCR 4.0.0

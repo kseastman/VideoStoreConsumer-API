@@ -75,4 +75,38 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
 
     end
   end
+
+  describe "create" do
+    it "builds a new movie from api request" do
+      VCR.use_cassette("movies") do
+        #Arrange
+        post movies_url(title: "The Princess Bride")
+        assert_response :success
+
+        #Act
+        movie = Movie.last
+
+        #Assert
+        movie.title.must_equal "The Princess Bride"
+      end
+    end
+
+    it "does not allow a duplicate movie to be created" do
+      VCR.use_cassette("movies") do
+        #Arrange
+        post movies_url(title: "The Princess Bride")
+        assert_response :success
+
+        movie = Movie.last
+
+        movie.title.must_equal "The Princess Bride"
+
+        #Act
+        post movies_url(title: "The Princess Bride")
+
+        #Assert
+        assert_response :error
+      end
+    end
+  end
 end

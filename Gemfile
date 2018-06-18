@@ -40,6 +40,9 @@ gem 'will_paginate'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'minitest-vcr'
+  gem 'webmock'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -56,8 +59,6 @@ group :development do
 
   # Use pry for rails console
   gem 'pry-rails'
-
-  gem 'dotenv-rails'
 end
 
 group :test do
