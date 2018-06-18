@@ -79,14 +79,13 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
   describe "create" do
     it "builds a new movie from api request" do
       VCR.use_cassette("movies") do
-        #Arrange
-        post movies_url(title: "The Princess Bride")
+        first_movie = MovieWrapper.search('Princess Bride').first
+
+        post movies_url, params: {query: first_movie.external_id}
         assert_response :success
 
-        #Act
         movie = Movie.last
 
-        #Assert
         movie.title.must_equal "The Princess Bride"
       end
     end
@@ -94,7 +93,9 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     it "does not allow a duplicate movie to be created" do
       VCR.use_cassette("movies") do
         #Arrange
-        post movies_url(title: "The Princess Bride")
+        first_movie = MovieWrapper.search('Princess Bride').first
+
+        post movies_url(query: first_movie.external_id)
         assert_response :success
 
         movie = Movie.last
@@ -102,7 +103,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
         movie.title.must_equal "The Princess Bride"
 
         #Act
-        post movies_url(title: "The Princess Bride")
+        post movies_url(query: first_movie.external_id)
 
         #Assert
         assert_response :not_found
