@@ -105,7 +105,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
         post movies_url(title: "The Princess Bride")
 
         #Assert
-        assert_response :error
+        assert_response :not_found
       end
     end
   end

@@ -20,6 +20,15 @@ class MovieWrapper
     end
   end
 
+  def self.id_search(query)
+    url = BASE_URL + "movie/" + "#{query}" + "?api_key=" + KEY
+    response =  HTTParty.get(url)
+
+    if response['id'] == query
+      movie = self.construct_movie(response)
+    end
+    return movie
+  end
   private
 
   def self.construct_movie(api_result)

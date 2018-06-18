@@ -22,8 +22,13 @@ class MoviesController < ApplicationController
   end
 
   def create
-    movie = MovieWrapper
-
+    movie = MovieWrapper.id_search(params[:query])
+    if movie
+      movie.save
+      render status: :ok
+    else
+      render status: :not_found, json: { errors: { title: ["No movie with title #{params["title"]}"] } }
+    end
   end
 
   private

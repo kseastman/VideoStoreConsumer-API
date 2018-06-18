@@ -58,4 +58,117 @@ http_interactions:
         cast members about making one of the greatest children''s movies of all time.","release_date":"2009-01-25"}]}'
     http_version: 
   recorded_at: Mon, 18 Jun 2018 21:18:47 GMT
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/movie/?api_key=fa02d0bdf89ae75a3cfd634634208367
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After
+      Cache-Control:
+      - public, max-age=28800
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 18 Jun 2018 22:34:26 GMT
+      Server:
+      - openresty
+      X-Ratelimit-Limit:
+      - '40'
+      X-Ratelimit-Remaining:
+      - '39'
+      X-Ratelimit-Reset:
+      - '1529361276'
+      Content-Length:
+      - '84'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status_code":34,"status_message":"The resource you requested could
+        not be found."}'
+    http_version: 
+  recorded_at: Mon, 18 Jun 2018 22:34:26 GMT
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/movie/2493?api_key=fa02d0bdf89ae75a3cfd634634208367
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After
+      Cache-Control:
+      - public, max-age=28800
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 18 Jun 2018 22:34:26 GMT
+      Etag:
+      - W/"a23bf37e6cd17f567244e4872a8e3079"
+      Server:
+      - openresty
+      Vary:
+      - Accept-Encoding
+      X-Memc:
+      - HIT
+      X-Memc-Age:
+      - '14263'
+      X-Memc-Expires:
+      - '14537'
+      X-Memc-Key:
+      - 78254215feae2a87e8ec4e610075f1d2
+      X-Ratelimit-Limit:
+      - '40'
+      X-Ratelimit-Remaining:
+      - '38'
+      X-Ratelimit-Reset:
+      - '1529361276'
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"adult":false,"backdrop_path":"/oaXyPP3HNW0gBl0ZGXLhJOdACeH.jpg","belongs_to_collection":null,"budget":16000000,"genres":[{"id":12,"name":"Adventure"},{"id":10751,"name":"Family"},{"id":14,"name":"Fantasy"},{"id":35,"name":"Comedy"},{"id":10749,"name":"Romance"}],"homepage":null,"id":2493,"imdb_id":"tt0093779","original_language":"en","original_title":"The
+        Princess Bride","overview":"In this enchantingly cracked fairy tale, the beautiful
+        Princess Buttercup and the dashing Westley must overcome staggering odds to
+        find happiness amid six-fingered swordsmen, murderous princes, Sicilians and
+        rodents of unusual size. But even death can''t stop these true lovebirds from
+        triumphing.","popularity":12.428466,"poster_path":"/gpxjoE0yvRwIhFEJgNArtKtaN7S.jpg","production_companies":[{"id":1153,"logo_path":null,"name":"Act
+        III Communications","origin_country":""},{"id":49243,"logo_path":null,"name":"The
+        Princess Bride Ltd.","origin_country":""},{"id":49244,"logo_path":null,"name":"Buttercup
+        Films Ltd.","origin_country":""}],"production_countries":[{"iso_3166_1":"US","name":"United
+        States of America"}],"release_date":"1987-09-18","revenue":30857814,"runtime":98,"spoken_languages":[{"iso_639_1":"en","name":"English"}],"status":"Released","tagline":"It''s
+        as real as the feelings you feel.","title":"The Princess Bride","video":false,"vote_average":7.7,"vote_count":1852}'
+    http_version: 
+  recorded_at: Mon, 18 Jun 2018 22:34:27 GMT
 recorded_with: VCR 4.0.0
