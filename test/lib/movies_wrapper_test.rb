@@ -6,7 +6,7 @@ class MoviesWrapperTest < ActionDispatch::IntegrationTest
       VCR.use_cassette('movies') do
         first_movie = MovieWrapper.search('Princess Bride').first
 
-        movie = MovieWrapper.id_search(first_movie.external_id)
+        movie = MovieWrapper.id_search(first_movie.external_id.to_s)
         movie.must_be_instance_of Movie
       end
     end

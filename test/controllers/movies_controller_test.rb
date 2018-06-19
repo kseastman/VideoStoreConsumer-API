@@ -81,7 +81,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
       VCR.use_cassette("movies") do
         first_movie = MovieWrapper.search('Princess Bride').first
 
-        post movies_url, params: {query: first_movie.external_id}
+        post movies_url(query: first_movie.external_id.to_s)
         assert_response :success
 
         movie = Movie.last
@@ -95,7 +95,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
         #Arrange
         first_movie = MovieWrapper.search('Princess Bride').first
 
-        post movies_url(query: first_movie.external_id)
+        post movies_url(query: first_movie.external_id.to_s)
         assert_response :success
 
         movie = Movie.last
@@ -103,7 +103,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
         movie.title.must_equal "The Princess Bride"
 
         #Act
-        post movies_url(query: first_movie.external_id)
+        post movies_url(query: first_movie.external_id.to_s)
 
         #Assert
         assert_response :not_found

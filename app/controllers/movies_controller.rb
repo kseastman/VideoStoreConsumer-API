@@ -1,3 +1,4 @@
+require 'pry'
 class MoviesController < ApplicationController
   before_action :require_movie, only: [:show]
 
@@ -24,8 +25,11 @@ class MoviesController < ApplicationController
   def create
     movie = MovieWrapper.id_search(params[:query])
     if movie
-      movie.save
-      render status: :ok
+      if movie.save
+        render status: :ok, json: {}
+      else
+        render status: :not_found, json: { errors: movie.errors.messages }
+      end
     else
       render status: :not_found, json: { errors: { title: ["No movie with title #{params["title"]}"] } }
     end
@@ -39,4 +43,5 @@ class MoviesController < ApplicationController
       render status: :not_found, json: { errors: { title: ["No movie with title #{params["title"]}"] } }
     end
   end
+
 end

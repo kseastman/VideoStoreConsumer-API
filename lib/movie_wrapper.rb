@@ -1,3 +1,4 @@
+require 'pry'
 class MovieWrapper
   BASE_URL = "https://api.themoviedb.org/3/"
   KEY = ENV["MOVIEDB_KEY"]
@@ -21,14 +22,17 @@ class MovieWrapper
   end
 
   def self.id_search(query)
-    url = BASE_URL + "movie/" + "#{query}" + "?api_key=" + KEY
+    url = BASE_URL + "movie/" + query + "?api_key=" + KEY
     response =  HTTParty.get(url)
 
-    if response['id'] == query
-      movie = self.construct_movie(response)
+    if response['id'] == query.to_i
+      result = self.construct_movie(response)
+      return result
     end
-    return movie
+
+    return nil
   end
+
   private
 
   def self.construct_movie(api_result)
