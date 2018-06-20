@@ -49,7 +49,7 @@ class RentalsController < ApplicationController
 private
   # TODO: make error payloads arrays
   def require_movie
-    @movie = Movie.find_by title: params[:title]
+    @movie = Movie.find params[:id]
     unless @movie
       render status: :not_found, json: { errors: { title: ["No movie with title #{params[:title]}"] } }
     end
