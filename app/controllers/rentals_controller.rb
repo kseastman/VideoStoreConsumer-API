@@ -5,7 +5,7 @@ class RentalsController < ApplicationController
   # TODO: make sure that wave 2 works all the way
   def check_out
     rental = Rental.new(movie: @movie, customer: @customer, due_date: params[:due_date])
-
+    rental.returned = false
     if rental.save
       render status: :ok, json: {}
     else
@@ -15,6 +15,8 @@ class RentalsController < ApplicationController
 
   def check_in
     rental = Rental.first_outstanding(@movie, @customer)
+    puts "Found #{@movie} and #{@customer}"
+    puts "Found #{rental}"
     unless rental
       return render status: :not_found, json: {
         errors: {
@@ -22,7 +24,7 @@ class RentalsController < ApplicationController
         }
       }
     end
-    rental.returned = true
+    rental.assign_attributes(returned: true)
     if rental.save
       render status: :ok, json: {}
     else
