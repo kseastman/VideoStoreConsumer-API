@@ -79,4 +79,46 @@ class CustomerTest < ActiveSupport::TestCase
       @customer.movies_checked_out_count.must_equal 0
     end
   end
+
+  describe "checked_out_movies" do
+    it "Should exist" do
+      @customer.must_respond_to :checked_out_movies
+    end
+
+    it "returns an empty array if the customer has no rentals" do
+      @customer.checked_out_movies.must_equal []
+    end
+
+    it "returns the movie object of a rental that has not yet been checked in" do
+      @customer.checked_out_movies.must_equal []
+
+      rental = Rental.create!(
+        customer: @customer,
+        movie: movies(:one),
+        due_date: Date.today + 7,
+        returned: false
+      )
+
+      movie = Movie.find(Rental.last.movie_id)
+
+      @customer.checked_out_movies.must_include movie
+    end
+
+    it "ignores returned movies" do
+      Rental.create!(
+        customer: @customer,
+        movie: movies(:one),
+        due_date: Date.today + 7,
+        returned: false
+      )
+
+      @customer.checked_out_movies.length.must_equal 1
+
+      rental = Rental.last
+      rental.update!(returned: true)
+
+      @customer.checked_out_movies.must_be_empty
+
+    end
+  end
 end
