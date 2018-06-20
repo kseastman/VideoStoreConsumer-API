@@ -84,9 +84,11 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
         post movies_url(query: first_movie.external_id.to_s)
         assert_response :success
 
-        movie = Movie.last
+        body = JSON.parse(response.body)
+        body.must_be_kind_of Hash
 
-        movie.title.must_equal "The Princess Bride"
+        # movie = Movie.last
+        body['title'].must_equal "The Princess Bride"
       end
     end
 
