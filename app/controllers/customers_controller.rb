@@ -14,6 +14,7 @@ class CustomersController < ApplicationController
 
     render json: data.as_json(
       only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit],
+      # include: {movies: {only: :title}},
       methods: [:movies_checked_out_count]
     )
   end

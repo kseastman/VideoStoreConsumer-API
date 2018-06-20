@@ -26,6 +26,7 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
         customer.must_include "phone"
         customer.must_include "account_credit"
         customer.must_include "movies_checked_out_count"
+        customer.must_include "movies"
       end
     end
 
