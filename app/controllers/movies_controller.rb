@@ -26,7 +26,11 @@ class MoviesController < ApplicationController
     movie = MovieWrapper.id_search(params[:query])
     if movie
       if movie.save
-        render status: :ok, json: {}
+        render(
+          status: :ok,
+          json: movie.as_json(
+            only: [:title, :overview, :release_date, :inventory]
+          ))
       else
         render status: :not_found, json: { errors: movie.errors.messages }
       end
