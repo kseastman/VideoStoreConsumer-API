@@ -1,3 +1,4 @@
+require 'pry'
 class RentalsController < ApplicationController
   before_action :require_movie, only: [:check_out, :check_in]
   before_action :require_customer, only: [:check_out, :check_in]
@@ -49,7 +50,7 @@ class RentalsController < ApplicationController
 private
   # TODO: make error payloads arrays
   def require_movie
-    @movie = Movie.find params[:id]
+    @movie = Movie.find_by(id: params[:id])
     unless @movie
       render status: :not_found, json: { errors: { title: ["No movie with title #{params[:title]}"] } }
     end
