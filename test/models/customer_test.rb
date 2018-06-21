@@ -89,10 +89,10 @@ class CustomerTest < ActiveSupport::TestCase
       @customer.checked_out_movies.must_equal []
     end
 
-    it "returns the movie object of a rental that has not yet been checked in" do
+    it "returns the movie as json of a rental that has not yet been checked in" do
       @customer.checked_out_movies.must_equal []
 
-      rental = Rental.create!(
+      Rental.create!(
         customer: @customer,
         movie: movies(:one),
         due_date: Date.today + 7,
@@ -101,7 +101,21 @@ class CustomerTest < ActiveSupport::TestCase
 
       movie = Movie.find(Rental.last.movie_id)
 
-      @customer.checked_out_movies.must_include movie
+      @customer.checked_out_movies[0]['id'].must_equal movie.id
+    end
+
+    it "returns the due date of the movie" do
+      @customer.checked_out_movies.must_equal []
+
+      Rental.create!(
+        customer: @customer,
+        movie: movies(:one),
+        due_date: Date.today + 7,
+        returned: false
+      )
+
+      movie = Movie.find(Rental.last.movie_id)
+      @customer.checked_out_movies[0].keys.must_include 'due_date'
     end
 
     it "ignores returned movies" do

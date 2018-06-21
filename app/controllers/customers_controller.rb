@@ -10,12 +10,11 @@ class CustomersController < ApplicationController
       data = Customer.all
     end
 
+    # sould we remove this?
     data = data.paginate(page: params[:p], per_page: params[:n])
 
     render json: data.as_json(
       only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit],
-      # try to make this return only rentals that are not checked in
-      include: {rentals: {only: [:movie_id, :due_date]}},
       methods: [:movies_checked_out_count, :checked_out_movies]
     )
   end

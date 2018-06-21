@@ -27,7 +27,12 @@ class RentalsController < ApplicationController
     end
     rental.assign_attributes(returned: true)
     if rental.save
-      render status: :ok, json: {}
+      render status: :ok, json:
+      # TODO: this needs testing
+        @customer.as_json(
+          only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit],
+          methods: [:movies_checked_out_count, :checked_out_movies]
+        )
     else
       render status: :bad_request, json: { errors: rental.errors.messages }
     end
@@ -52,7 +57,7 @@ private
   def require_movie
     @movie = Movie.find_by(id: params[:id])
     unless @movie
-      render status: :not_found, json: { errors: { title: ["No movie with title #{params[:title]}"] } }
+      render status: :not_found, json: { errors: { title: ["No movie with id #{params[:id]}"] } }
     end
   end
 
