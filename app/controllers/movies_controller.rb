@@ -9,15 +9,18 @@ class MoviesController < ApplicationController
       data = Movie.all
     end
 
-    render status: :ok, json: data
+    render status: :ok, json: data.as_json(
+      only: [:title, :overview, :inventory],
+      methods: [:release_year]
+    )
   end
 
   def show
     render(
       status: :ok,
       json: @movie.as_json(
-        only: [:title, :overview, :release_date, :inventory],
-        methods: [:available_inventory]
+        only: [:title, :overview, :inventory],
+        methods: [:release_year]
         )
       )
   end
@@ -32,7 +35,7 @@ class MoviesController < ApplicationController
             only: [:title, :overview, :release_date, :inventory]
           ))
       else
-        render status: :not_found, json: { errors: movie.errors.messages }
+        render status: :error, json: { errors: movie.errors.messages }
       end
     else
       render status: :not_found, json: { errors: { title: ["No movie with title #{params["title"]}"] } }

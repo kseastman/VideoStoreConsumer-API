@@ -19,7 +19,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
       data = JSON.parse @response.body
       data.each do |movie|
         movie.must_include "title"
-        movie.must_include "release_date"
+        movie.must_include "release_year"
       end
     end
 
@@ -60,9 +60,8 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
       movie = JSON.parse @response.body
       movie.must_include "title"
       movie.must_include "overview"
-      movie.must_include "release_date"
+      movie.must_include "release_year"
       movie.must_include "inventory"
-      movie.must_include "available_inventory"
     end
 
     it "Returns an error when the movie doesn't exist" do
@@ -108,7 +107,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
         post movies_url(query: first_movie.external_id.to_s)
 
         #Assert
-        assert_response :not_found
+        assert_response :error
       end
     end
   end

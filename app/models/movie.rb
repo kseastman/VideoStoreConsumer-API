@@ -8,6 +8,10 @@ class Movie < ApplicationRecord
     self.inventory - Rental.where(movie: self, returned: false).length
   end
 
+  def release_year
+    return self.release_date.year
+  end
+
   def image_url
     orig_value = read_attribute :image_url
     if !orig_value
